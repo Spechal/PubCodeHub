@@ -1,0 +1,21 @@
+import pygame, random, sys
+
+pygame.init()
+
+screen = pygame.display.set_mode([640,480])
+screen.fill([255,255,255])
+
+domo = pygame.image.load('domo_58.jpg')
+
+for i in range(1, 500):
+    x = random.randint(1, 590)
+    y = random.randint(1, 425)
+    screen.blit(domo, [x, y])
+    pygame.display.flip()
+    pygame.draw.rect(screen, [255,255,255], [x, y, 58, 58], 0)
+    pygame.time.delay(1000)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
