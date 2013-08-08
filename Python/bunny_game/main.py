@@ -27,9 +27,14 @@ badger = pygame.image.load('resources/images/badguy.png')
 badger_animated = badger
 health_bar = pygame.image.load('resources/images/healthbar.png')
 health = pygame.image.load('resources/images/health.png')
+lose_screen = pygame.image.load('resources/images/gameover.png')
+win_screen = pygame.image.load('resources/images/youwin.png')
+
+running = 1
+exit_code = 0
 
 # 4 - Loop forever
-while 1:
+while running:
     badguy_timer -= 1
     # 5 clear before redraw
     screen.fill(0)
@@ -158,3 +163,40 @@ while 1:
         player_position[0] -= 5
     elif keys[3]:
         player_position[0] += 5
+
+    if pygame.time.get_ticks() >= 90000:
+        running = 0
+        exit_code = 1
+    if player_health <= 0:
+        running = 0
+        exit_code = 0
+    if accuracy[1] != 0:
+        total_accuracy = accuracy[0] * 1.0 / accuracy[1] * 100
+    else:
+        total_accuracy = 0
+
+if exit_code == 0:
+    pygame.font.init()
+    font = pygame.font.Font(None, 24)
+    text = font.render("Accuracy: " + str(total_accuracy) + "%", True, (255, 0, 0))
+    textRect = text.get_rect()
+    textRect.centerx = screen.get_rect().centerx
+    textRect.centery = screen.get_rect().centery + 24
+    screen.blit(lose_screen, (0,0))
+    screen.blit(text, textRect)
+else :
+    pygame.font.init()
+    font = pygame.font.Font(None, 24)
+    text = font.render("Accuracy: " + str(total_accuracy) + "%", True, (0,255,0))
+    textRect = text.get_rect()
+    textRect.centerx = screen.get_rect().centerx
+    textRect.centery = screen.get_rect().centery + 24
+    screen.blit(win_screen, (0,0))
+    screen.blit(text, textRect)
+
+while 1:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit(0)
+    pygame.display.flip()
