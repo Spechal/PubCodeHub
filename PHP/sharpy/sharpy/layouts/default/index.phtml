@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Untitled</title>
+    <link rel="stylesheet" type="text/css" href="/css/<?php echo $this->_template(); ?>/style.css" media="screen" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <?php if(!empty($this->hud)): ?>
+    <div id="hud" class="<?php echo $this->hud['class']; ?>"><div id="hud_close" onclick="$('#hud').fadeOut();">Close</div>
+      <?php
+        if(is_array($this->hud['message'])):
+          echo '<ul>The following errors occurred:';
+            foreach($this->hud['message'] as $msg):
+              echo '<li>'.$msg.'</li>';
+            endforeach;
+          echo '</ul>';
+        else:
+          echo $this->hud['message'];
+        endif;
+      ?>
+    </div>
+    <?php endif; ?>
+    <div id="wrapper">
+      <div id="header">
+        <h1>Sharpy</h1>
+      </div>
+      <div id="content">
+        <?php
+		      $this->renderPartial();
+		    ?>
+      </div>
+    </div>
+  <body>
+</html>

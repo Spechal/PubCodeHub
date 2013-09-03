@@ -1,0 +1,9 @@
+<p><a href="/blog/manage/create" title="Crete post">Create post</a></p>
+<?php
+  if(!empty($this->posts)):
+    echo '<ul>';
+  	foreach($this->posts as $key => $post):
+  	  echo '<li>'.$post['title'].'<br /><sub><a href="/blog/manage/update/id/'.$post['id'].'" title="Update" />update</a> - <a href="/blog/manage/delete/id/'.$post['id'].'" title="Delete" />delete</a></sub></li>';
+  	endforeach;
+  	echo '</ul>';
+  endif;

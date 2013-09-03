@@ -1,0 +1,5 @@
+<form method="post" action="">
+  <p><label for="title">Title</label><br /><input type="text" name="title" value="<?php if(!empty($this->post['title'])) echo $this->post['title']; ?>" /></p>
+  <p><label for="content">Content</label><br /><textarea name="content"><?php if(!empty($this->post['content'])) echo $this->post['content']; ?></textarea></p>
+  <p><label for="submit">&nbsp;</label><input type="hidden" name="id" value="<?php if(!empty($this->post['id'])) echo $this->post['id']; ?>" /><input type="submit" name="submit" value="Submit" /></p>
+</form>

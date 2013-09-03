@@ -1,0 +1,9 @@
+<h1>Blog Posts</h1>
+<?php
+  if(!empty($this->posts)):
+    foreach($this->posts as $key => $post):
+      echo '<h2>'.$post['title'].'</h2>';
+      echo '<div><p>'.$post['content'].'</p><sub>'.date('m/d/Y H:i', $post['unixtime']).' by '.$post['users_login'].'</sub></div>';
+    endforeach;
+  endif;
+?>
